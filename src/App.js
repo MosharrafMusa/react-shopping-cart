@@ -4,7 +4,7 @@ import data from "./data";
 
 //Context
 import ProductContext from "./contexts/ProductContext";
-
+import CartContext from "./contexts/CartContext";
 // Components
 import Navigation from "./components/Navigation";
 import Products from "./components/Products";
@@ -25,13 +25,15 @@ function App() {
 
       {/* Routes */}
       <ProductContext.Provider value={{ products, addItem }}>
-        <Route exact path="/">
-          <Products />
-        </Route>
+        <CartContext.Provider value={{ cart }}>
+          <Route exact path="/">
+            <Products />
+          </Route>
 
-        <Route path="/cart">
-          <ShoppingCart cart={cart} />
-        </Route>
+          <Route path="/cart">
+            <ShoppingCart />
+          </Route>
+        </CartContext.Provider>
       </ProductContext.Provider>
     </div>
   );
